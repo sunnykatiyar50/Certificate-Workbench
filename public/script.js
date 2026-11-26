@@ -104,7 +104,7 @@ function setMenu(open) {
 $('menuBtn').addEventListener('click', () => setMenu(!sidebarEl.classList.contains('open')));
 document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
 sidebarEl.addEventListener('click', e => { if (e.target === sidebarEl) setMenu(false); }); // tap on the dimmed backdrop
-window.matchMedia('(min-width: 861px)').addEventListener('change', e => { if (e.matches) setMenu(false); });
+if (typeof window.matchMedia === 'function') window.matchMedia('(min-width: 861px)').addEventListener('change', e => { if (e.matches) setMenu(false); });
 navItems.forEach(b => b.addEventListener('click', () => { showView(b.dataset.view); setMenu(false); window.scrollTo(0, 0); }));
 
 // ---------- validation forms ----------
