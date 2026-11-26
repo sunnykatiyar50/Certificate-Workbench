@@ -6,13 +6,14 @@ Add your notes under **Unreleased** as you work. `node scripts/release.js` moves
 
 ## Unreleased
 
+## 2.5.0 - 2026-11-26
+
 ### Added
 - **Install as an app (PWA):** Certificate Workbench can now be installed from your browser (Install app / Add to Home Screen) and opens in its own window with an icon. Pages and API calls are never cached, so nothing private is stored offline.
 - **Back in the app:** each view you open is a history entry, so the browser Back button and the Android back gesture step through the views you visited. The installed app also shows a Back button in the sidebar.
 
 ### Fixed
 - A DER-encoded `.crt` or `.cer` file with an ECDSA or Ed25519 key was rejected as "Unsupported or corrupt certificate format". All `.crt` files now parse, whether PEM or DER and whatever the key type.
-
 
 ## 2.4.1 - 2026-10-12
 
