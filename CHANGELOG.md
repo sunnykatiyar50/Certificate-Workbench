@@ -6,6 +6,10 @@ Add your notes under **Unreleased** as you work. `node scripts/release.js` moves
 
 ## Unreleased
 
+### Changed
+- The sidebar footer is reordered: theme switch, **Sign out**, your account, then the version. Sign out is now a full-width row.
+
+
 ## 2.5.0 - 2026-11-26
 
 ### Added
