@@ -92,7 +92,20 @@ if (typeof window.addEventListener === 'function') {
 $('backBtn').addEventListener('click', () => {
   if (viewDepth > 0) history.back();
 });
-navItems.forEach(b => b.addEventListener('click', () => showView(b.dataset.view)));
+// Mobile: the sidebar collapses behind a hamburger button at the top left.
+const sidebarEl = document.querySelector('.sidebar');
+function setMenu(open) {
+  sidebarEl.classList.toggle('open', open);
+  document.body.classList.toggle('menu-open', open);
+  const btn = $('menuBtn');
+  btn.setAttribute('aria-expanded', String(open));
+  btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+}
+$('menuBtn').addEventListener('click', () => setMenu(!sidebarEl.classList.contains('open')));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+sidebarEl.addEventListener('click', e => { if (e.target === sidebarEl) setMenu(false); }); // tap on the dimmed backdrop
+if (typeof window.matchMedia === 'function') window.matchMedia('(min-width: 861px)').addEventListener('change', e => { if (e.matches) setMenu(false); });
+navItems.forEach(b => b.addEventListener('click', () => { showView(b.dataset.view); setMenu(false); window.scrollTo(0, 0); }));
 
 // ---------- validation forms ----------
 
@@ -372,8 +385,8 @@ function pemBlock(title, pem, filename, { secret = false, kind } = {}) {
     <div class="pem-head">
       <span><b>${escapeHtml(title)}</b>${secret ? ' ' + badge('bad', 'keep secret') : ''}</span>
       <span class="pem-actions">
-        <button type="button" class="btn small" data-action="copy">Copy</button>
-        <button type="button" class="btn small" data-action="download" data-filename="${escapeHtml(filename)}">Download</button>
+        <button type="button" class="btn small" data-action="copy" title="Copy" aria-label="Copy">Copy</button>
+        <button type="button" class="btn small" data-action="download" title="Download" aria-label="Download" data-filename="${escapeHtml(filename)}">Download</button>
       </span>
     </div>
     <pre>${escapeHtml(pem)}</pre>
@@ -389,7 +402,7 @@ function renderKeyPair(entry, { notice = '', historyId = null, missingKeyMessage
   if (entry.certificatePem) actions.push('<button type="button" class="btn primary small" data-action="validate">Validate this certificate</button>');
   if (historyId) {
     actions.push(`<button type="button" class="btn small" data-action="rename" data-id="${escapeHtml(historyId)}">Rename</button>`);
-    actions.push(`<button type="button" class="btn small danger" data-action="delete" data-id="${escapeHtml(historyId)}">Delete</button>`);
+    actions.push(`<button type="button" class="btn small danger" data-action="delete" title="Delete" aria-label="Delete" data-id="${escapeHtml(historyId)}">Delete</button>`);
   }
   return `<div class="cert">
     <div class="cert-header">
@@ -1173,7 +1186,7 @@ function codeBlock(title, code) {
   return `<div class="pem-block" data-kind="snippet">
     <div class="pem-head">
       <span><b>${escapeHtml(title)}</b></span>
-      <span class="pem-actions"><button type="button" class="btn small" data-action="copy">Copy</button></span>
+      <span class="pem-actions"><button type="button" class="btn small" data-action="copy" title="Copy" aria-label="Copy">Copy</button></span>
     </div>
     <pre>${escapeHtml(code)}</pre>
   </div>`;

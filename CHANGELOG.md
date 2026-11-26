@@ -6,6 +6,12 @@ Add your notes under **Unreleased** as you work. `node scripts/release.js` moves
 
 ## Unreleased
 
+### Changed
+- **Mobile menu:** on phones the sidebar is now a hamburger button at the top left that opens a slide-in menu (up to half the screen wide) with every option, the theme switch, your account and the version. Copy, Download and Delete buttons become icons on small screens.
+
+### Fixed
+- The top bar no longer stretches tall on phones, which left a large gap above some pages.
+
 ## 2.5.2 - 2026-11-26
 
 ### Fixed

@@ -20,12 +20,16 @@
   <div class="app">
     <aside class="sidebar">
       <div class="brand-row">
+        <button type="button" class="menu-btn" id="menuBtn" title="Menu" aria-label="Open menu" aria-expanded="false" aria-controls="sideMenu">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
         <button type="button" class="back-btn" id="backBtn" title="Go back" aria-label="Go back" hidden>
           <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
         </button>
         <img class="brand-logo" src="favicon.svg" alt="" width="28" height="28">
         <div class="brand">Certificate Workbench</div>
       </div>
+<div class="side-menu" id="sideMenu">
       <nav class="nav">
         <div class="nav-group">Validate</div>
         <button type="button" class="nav-item active" data-view="file">File Upload</button>
@@ -76,6 +80,7 @@
         <button type="button" class="version-btn" id="versionBtn" aria-haspopup="dialog" aria-expanded="false" aria-controls="releasePopover">
           <span id="version">Version</span><span class="version-hint">What's new</span>
         </button>
+      </div>
       </div>
     </aside>
 
