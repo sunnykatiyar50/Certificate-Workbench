@@ -263,22 +263,21 @@ h2 { margin-bottom: 10px; font-size: 1.02rem; }
 }
 .user-row { display: flex; align-items: center; gap: 9px; }
 .signout-btn {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 7px;
+  justify-content: flex-start;
+  gap: 8px;
   width: 100%;
-  padding: 5px 8px;
-  background: rgba(255, 255, 255, 0.08);
+  padding: 7px 12px;
+  background: transparent;
   border: none;
   border-radius: 7px;
-  color: #e6edf3;
+  color: var(--sidebar-text);
   font: inherit;
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.88rem;
   cursor: pointer;
 }
-.signout-btn:hover { background: rgba(239, 90, 80, 0.28); color: #fff; }
+.signout-btn:hover { background: rgba(239, 90, 80, 0.22); color: #fff; }
 
 /* Three-way theme switch: the selected option is highlighted, so a click always does what it says. */
 .theme-switch {
