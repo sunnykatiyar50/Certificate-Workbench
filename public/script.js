@@ -56,14 +56,42 @@ function jsonRequest(method, body) {
 const navItems = document.querySelectorAll('.nav-item[data-view]');
 const views = document.querySelectorAll('.view');
 
-function showView(name) {
+// Each view the user opens is a history entry, so the browser's Back button, the Android back gesture and the in-app
+// Back button (shown when installed as an app, where there is no browser toolbar) step through the views visited.
+let viewDepth = 0; // views pushed in this session; Back is only offered while there is somewhere to go back to
+
+function showView(name, { push = true } = {}) {
   if (!$(`view-${name}`)) name = 'file';
+  const current = (location.hash || '').slice(1);
   navItems.forEach(b => b.classList.toggle('active', b.dataset.view === name));
   views.forEach(v => v.classList.toggle('active', v.id === `view-${name}`));
   if (name === 'history') refreshHistory();
   if (name === 'cas') refreshCas();
-  try { history.replaceState(null, '', `#${name}`); } catch (e) { /* hash is a convenience only */ }
+  try {
+    if (push && current !== name) {
+      history.pushState({ view: name, depth: ++viewDepth }, '', `#${name}`);
+    } else {
+      history.replaceState({ view: name, depth: viewDepth }, '', `#${name}`);
+    }
+  } catch (e) { /* hash is a convenience only */ }
+  updateBackButton();
 }
+
+function updateBackButton() {
+  const back = $('backBtn');
+  if (back) back.hidden = !(viewDepth > 0);
+}
+
+if (typeof window.addEventListener === 'function') {
+  window.addEventListener('popstate', e => {
+    const state = e.state || {};
+    viewDepth = typeof state.depth === 'number' ? state.depth : 0;
+    showView(state.view || (location.hash || '').slice(1) || 'file', { push: false });
+  });
+}
+$('backBtn').addEventListener('click', () => {
+  if (viewDepth > 0) history.back();
+});
 navItems.forEach(b => b.addEventListener('click', () => showView(b.dataset.view)));
 
 // ---------- validation forms ----------
@@ -1831,5 +1859,5 @@ fetch('/api/version')
   loadAlgorithms();
   updateHistoryCount();
   refreshCas();
-  showView(location.hash.slice(1) || 'file');
+  showView(location.hash.slice(1) || 'file', { push: false });
 })();
