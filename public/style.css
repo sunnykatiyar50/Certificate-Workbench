@@ -154,6 +154,29 @@ h2 { margin-bottom: 10px; font-size: 1.02rem; }
   overflow: hidden;   /* the nav scrolls on its own; the footer below stays pinned and always visible */
 }
 
+.brand-row { display: flex; align-items: flex-start; gap: 4px; }
+/* No browser toolbar when installed as an app, so Back is offered in the app itself (see showView in script.js). */
+.back-btn {
+  display: none;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin: -3px 0 0 -4px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--sidebar-text);
+  cursor: pointer;
+}
+.back-btn:hover { background: rgba(255, 255, 255, 0.1); color: #fff; }
+.back-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+@media (display-mode: standalone), (display-mode: minimal-ui) {
+  .back-btn:not([hidden]) { display: inline-flex; }
+}
+
 .brand {
   color: #fff;
   font-size: 0.98rem;
@@ -772,6 +795,7 @@ summary { cursor: pointer; font-weight: 600; font-size: 0.86rem; }
 }
 .rn-empty { padding: 18px 16px; color: var(--muted); }
 
+.offline-page .login-shell { grid-template-columns: minmax(0, 1fr); }
 .login-card {
   width: min(100%, 400px);
   padding: 30px 28px 26px;

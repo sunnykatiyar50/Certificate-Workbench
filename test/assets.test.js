@@ -127,7 +127,7 @@ test('the real login and app pages link fingerprinted assets that exist', async 
 
   const html = await (await fetch(`${base}/login.html`)).text();
   const links = [...html.matchAll(/(?:href|src)="([\w.-]+\.(?:css|js))\?v=([0-9a-f]{10})"/g)];
-  assert.deepEqual(links.map(m => m[1]).sort(), ['login.js', 'style.css', 'theme.js']);
+  assert.deepEqual(links.map(m => m[1]).sort(), ['login.js', 'pwa.js', 'style.css', 'theme.js']);
   for (const [, name, hash] of links) {
     const res = await fetch(`${base}/${name}?v=${hash}`);
     assert.equal(res.status, 200, name);
