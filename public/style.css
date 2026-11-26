@@ -154,7 +154,7 @@ h2 { margin-bottom: 10px; font-size: 1.02rem; }
   overflow: hidden;   /* the nav scrolls on its own; the footer below stays pinned and always visible */
 }
 
-.brand-row { display: flex; align-items: flex-start; gap: 4px; }
+.brand-row { display: flex; align-items: center; gap: 9px; padding: 2px 8px 10px; }
 /* No browser toolbar when installed as an app, so Back is offered in the app itself (see showView in script.js). */
 .back-btn {
   display: none;
@@ -163,7 +163,7 @@ h2 { margin-bottom: 10px; font-size: 1.02rem; }
   justify-content: center;
   width: 30px;
   height: 30px;
-  margin: -3px 0 0 -4px;
+  margin: 0 -4px 0 -6px;
   padding: 0;
   border: 0;
   border-radius: 8px;
@@ -181,10 +181,11 @@ h2 { margin-bottom: 10px; font-size: 1.02rem; }
   color: #fff;
   font-size: 0.98rem;
   font-weight: 700;
-  line-height: 1.2;
-  white-space: nowrap;
-  padding: 0 8px 8px;
+  line-height: 1.15;
+  min-width: 0;
+  padding: 0;
 }
+.brand-logo { flex: 0 0 auto; width: 28px; height: 28px; border-radius: 7px; }
 
 .nav {
   display: flex;
@@ -829,8 +830,7 @@ summary { cursor: pointer; font-weight: 600; font-size: 0.86rem; }
 @media (max-width: 860px) {
   .app { grid-template-columns: 1fr; }
   .sidebar { position: static; height: auto; padding: 12px; overflow: visible; }
-  .brand { padding: 0 6px 8px; }
-  .brand br { display: none; }
+  .brand-row { padding: 0 6px 8px; }
   .nav { flex-direction: row; flex-wrap: wrap; gap: 4px; overflow: visible; margin-right: 0; padding-right: 0; }
   .nav-group { display: none; }
   .nav-item { width: auto; gap: 8px; padding: 7px 12px; }
