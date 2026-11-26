@@ -6,9 +6,10 @@ Add your notes under **Unreleased** as you work. `node scripts/release.js` moves
 
 ## Unreleased
 
+## 2.5.2 - 2026-11-26
+
 ### Fixed
 - The sidebar now shows the app logo next to the name.
-
 
 ## 2.5.1 - 2026-11-26
 
