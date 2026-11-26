@@ -831,7 +831,6 @@ summary { cursor: pointer; font-weight: 600; font-size: 0.86rem; }
   .app { grid-template-columns: 1fr; }
   .sidebar { position: static; height: auto; padding: 12px; overflow: visible; }
   .brand-row { padding: 0 6px 8px; }
-  .brand br { display: none; }
   .nav { flex-direction: row; flex-wrap: wrap; gap: 4px; overflow: visible; margin-right: 0; padding-right: 0; }
   .nav-group { display: none; }
   .nav-item { width: auto; gap: 8px; padding: 7px 12px; }
